@@ -5,7 +5,7 @@ on:
   pull_request:
     types: [opened, synchronize]
 
-job:
+jobs:
   quality:
     runs-on: ubuntu-latest
     steps:
@@ -18,11 +18,11 @@ job:
           python-version: '3.11'
       
       - name: Install dependencies
-        run: npm install
+        run: pip install -r requirements.txt
 
       - name: Run linter
-        run: npm run lint
+        run: flake8 .
       
-      - name: Run test
-        run: npm test
+      - name: Run tests
+        run: pytest
 
