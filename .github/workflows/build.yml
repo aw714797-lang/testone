@@ -1,20 +1,22 @@
 name: Build and Upload Artifacts
 on:
   push:
-    tags: - 'v*'
+    tags:
+      - 'v*'
 
 jobs:
-  name: Build
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Create a build folder with a file
-      run: mkdir -p dist && echo "Hello" > dist/file.txt
+      - name: Create a build folder with a file
+        run: mkdir -p dist && echo "Hello" > dist/file.txt
    
-    - name: Upload the dist/ folder
-      uses: actions/upload-artifact@v4
-      with:
-        name: test
-        path: /dist/test
+      - name: Upload the dist/ folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: test
+          path: /dist/test
